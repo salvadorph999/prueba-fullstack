@@ -1,0 +1,32 @@
+<div class="page">
+
+  <header class="top-bar">
+    <h1>Consulta de Catálogos</h1>
+    <button class="btn-logout" (click)="cerrarSesion()">Cerrar Sesión</button>
+  </header>
+
+  <main class="content">
+
+    <!-- Estado de Cambios -->
+    <section class="catalog-card">
+      <h2>Estado de Cambios</h2>
+      <p class="error" *ngIf="errorEstados">{{ errorEstados }}</p>
+      <ul *ngIf="estadoCambios.length > 0">
+        <li *ngFor="let estado of estadoCambios">{{ estado }}</li>
+      </ul>
+      <p class="empty" *ngIf="estadoCambios.length === 0 && !errorEstados">Cargando...</p>
+    </section>
+
+    <!-- Periodos -->
+    <section class="catalog-card">
+      <h2>Periodos</h2>
+      <p class="error" *ngIf="errorPeriodos">{{ errorPeriodos }}</p>
+      <ul *ngIf="periodos.length > 0">
+        <li *ngFor="let periodo of periodos">{{ periodo }}</li>
+      </ul>
+      <p class="empty" *ngIf="periodos.length === 0 && !errorPeriodos">Cargando...</p>
+    </section>
+
+  </main>
+
+</div>
