@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { CatalogosService } from './catalogos.service';
+import { CatalogosService, ConceptoCatalogo } from './catalogos.service';
 
 @Component({
   selector: 'app-catalogos',
@@ -13,9 +13,10 @@ import { CatalogosService } from './catalogos.service';
 export class CatalogosComponent implements OnInit {
   estadoCambios: string[] = [];
   periodos: string[] = [];
+  capitalContable: ConceptoCatalogo[] = []; //------------------
   errorEstados = '';
   errorPeriodos = '';
-
+  errorCapitalContable = '';                //------------------
   constructor(
     private catalogosService: CatalogosService,
     private router: Router
@@ -24,6 +25,8 @@ export class CatalogosComponent implements OnInit {
   ngOnInit(): void {
     this.cargarEstadoCambios();
     this.cargarPeriodos();
+
+    this.cargarCapitalContable(); //------------------
   }
 
   cargarEstadoCambios(): void {
@@ -39,6 +42,14 @@ export class CatalogosComponent implements OnInit {
       error: () => this.errorPeriodos = 'No se pudo cargar el catálogo de periodos.'
     });
   }
+
+  cargarCapitalContable(): void {
+    this.catalogosService.getEstadoCambiosCapitalContable().subscribe({
+      next: (data) => this.capitalContable = data,
+      error: () => this.errorCapitalContable = 'No se pudo cargar el catálogo de capital contable.'
+    });
+  }
+
 
   cerrarSesion(): void {
     sessionStorage.removeItem('isLoggedIn');

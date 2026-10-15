@@ -27,6 +27,18 @@
       <p class="empty" *ngIf="periodos.length === 0 && !errorPeriodos">Cargando...</p>
     </section>
 
+     <!-- R13 A-1311: Estado de cambios en el capital contable de la sociedad controladora -->
+    <section class="catalog-card">
+      <h2>Estado de cambios en el capital contable (R13 A-1311)</h2>
+      <p class="error" *ngIf="errorCapitalContable">{{ errorCapitalContable }}</p>
+      <ul *ngIf="capitalContable.length > 0">
+        <li *ngFor="let concepto of capitalContable">
+          <span class="clave">{{ concepto.clave }}</span> {{ concepto.descripcion }}
+        </li>
+      </ul>
+      <p class="empty" *ngIf="capitalContable.length === 0 && !errorCapitalContable">Cargando...</p>
+    </section>
+
   </main>
 
 </div>
